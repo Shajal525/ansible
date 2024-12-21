@@ -1,0 +1,42 @@
+---
+# Playbook to set up folder structure for new project
+
+- name: Prompt for project/folder name
+  hosts: localhost
+
+  vars_prompt:
+    - name: project_name
+      prompt: Enter the name of Project/Folder?
+      private: no
+
+  tasks:
+  
+  - name: Create Project Directory and Group Vars Folder
+    file:
+      path: "{{ destination_directory }}/{{ project_name }}/group_vars"
+      state: directory
+    delegate_to: localhost
+  - name: Create Inventory Folder
+    file:
+      path: "{{ destination_directory }}/{{ project_name }}/inventory"
+      state: directory
+    delegate_to: localhost
+
+  - name: Copy ansible.cfg
+    copy:
+      src: "{{ source_directory }}/ansible.cfg"
+      dest: "{{ destination_directory }}/{{ project_name }}/ansible.cfg"
+    delegate_to: localhost
+
+  - name: Copy sample hosts file
+    copy:
+      src: "{{ source_directory }}/inventory/hosts"
+      dest: "{{ destination_directory }}/{{ project_name }}/inventory/hosts"
+    delegate_to: localhost
+
+  - name: Copy all.yml file
+    copy:
+      src: "{{ source_directory }}/group_vars/all.yml"
+      dest: "{{ destination_directory }}/{{ project_name }}/group_vars/all.yml"
+    delegate_to: localhost
+
