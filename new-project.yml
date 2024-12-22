@@ -10,15 +10,22 @@
       private: no
 
   tasks:
-  
+
+  - name: Create Inventory Folder
+    file:
+      path: "{{ destination_directory }}/{{ project_name }}/inventory"
+      state: directory
+    delegate_to: localhost
+    
   - name: Create Project Directory and Group Vars Folder
     file:
       path: "{{ destination_directory }}/{{ project_name }}/group_vars"
       state: directory
     delegate_to: localhost
-  - name: Create Inventory Folder
+
+  - name: Create Roles Folder
     file:
-      path: "{{ destination_directory }}/{{ project_name }}/inventory"
+      path: "{{ destination_directory }}/{{ project_name }}/roles"
       state: directory
     delegate_to: localhost
 
@@ -30,13 +37,19 @@
 
   - name: Copy sample hosts file
     copy:
-      src: "{{ source_directory }}/inventory/hosts"
-      dest: "{{ destination_directory }}/{{ project_name }}/inventory/hosts"
+      src: "{{ source_directory }}/inventory/"
+      dest: "{{ destination_directory }}/{{ project_name }}/inventory/"
     delegate_to: localhost
 
-  - name: Copy all.yml file
+  - name: Copy group_vars file
     copy:
-      src: "{{ source_directory }}/group_vars/all.yml"
-      dest: "{{ destination_directory }}/{{ project_name }}/group_vars/all.yml"
+      src: "{{ source_directory }}/group_vars/"
+      dest: "{{ destination_directory }}/{{ project_name }}/group_vars/"
+    delegate_to: localhost
+
+  - name: Copy roles file
+    copy:
+      src: "{{ source_directory }}/roles/"
+      dest: "{{ destination_directory }}/{{ project_name }}/roles/"
     delegate_to: localhost
 

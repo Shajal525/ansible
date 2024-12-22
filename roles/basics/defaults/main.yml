@@ -1,0 +1,10 @@
+---
+username: notthebee
+
+password: changeme
+
+shell: /bin/bash
+
+ssh_port: 22
+
+ssh_key_path: /mnt/c/Users/Shajal/Documents/Personal/Ansible/.ssh/id_rsa
