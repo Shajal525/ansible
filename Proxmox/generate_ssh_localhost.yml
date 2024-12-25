@@ -1,0 +1,6 @@
+---
+- name: Generate ssh keys
+  hosts: localhost
+
+  roles:
+    - generate_ssh_localhost

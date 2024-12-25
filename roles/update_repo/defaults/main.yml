@@ -1,0 +1,4 @@
+---
+repo_to_remove1: pve-enterprise
+repo_to_remove2: ceph
+repo_to_add: pve-no-subscription

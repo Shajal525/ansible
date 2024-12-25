@@ -1,21 +1,13 @@
 ---
-- name: Check if SSH key exists
-  stat:
-    path: "{{ ssh_key_path }}"
-  notify: Generate SSH key pair
-
-- name: Flush handlers immediately
-  meta: flush_handlers
-
-- name: Read the public key
-  slurp:
-    src: "{{ ssh_key_path }}.pub"
-  register: public_key_content
+- name: Install openssh-server
+  apt:
+    name: openssh-server
+    state: present
 
 - name: Deploy SSH public key to all hosts
   authorized_key:
     user: "{{ username }}"
-    key: "{{ public_key_content['content'] | b64decode }}"
+    key: "{{ lookup('file', ssh_public_key) }}"
   
 - name: Update SSH configuration to be more secure (thanks Jeff!)
   lineinfile:

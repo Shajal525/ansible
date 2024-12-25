@@ -1,0 +1,15 @@
+---
+- name: Check if SSH key exists
+  stat:
+    path: "{{ ssh_key_path }}"
+  register: result
+
+- name: Create .ssh Folder
+  file:
+    path: "{{ current_directory }}/.ssh/"
+    state: directory
+  when: not result.stat.exists
+
+- name: Generate SSH key pair
+  command: ssh-keygen -t rsa -b 2048 -f "{{ ssh_key_path }}" -C "Ansible" -N ""
+  when: not result.stat.exists

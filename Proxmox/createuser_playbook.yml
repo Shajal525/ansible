@@ -1,0 +1,8 @@
+---
+- name: Create new user
+  hosts: homeserver
+  become: yes
+
+  roles:
+    - update_repo
+    - create_sudo_user

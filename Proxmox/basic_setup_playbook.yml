@@ -5,5 +5,4 @@
 
   roles:
     # - wifi_setup
-    - remove_repo
     - basics

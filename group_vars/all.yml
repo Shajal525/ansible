@@ -2,8 +2,7 @@
 source_directory: /home/shajal/Ansible/Ansible
 destination_directory: /home/shajal/Ansible/Ansible
 
-username: root
-
+username: shajal
 password: shajal
 
 shell: /bin/bash

@@ -1,5 +1,7 @@
 ---
-username: root
+current_directory: /home/shajal/Ansible/Ansible/Proxmox
+
+username: shajal
 
 password: shajal
 
@@ -7,4 +9,5 @@ shell: /bin/bash
 
 ssh_port: 22
 
-ssh_key_path: /home/shajal/Ansible/Ansible/.ssh/id_rsa
+ssh_key_path: "{{ current_directory }}/.ssh/id_rsa"
+ssh_public_key: "{{ current_directory }}/.ssh/id_rsa.pub"
