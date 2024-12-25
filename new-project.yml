@@ -35,6 +35,12 @@
       dest: "{{ destination_directory }}/{{ project_name }}/ansible.cfg"
     delegate_to: localhost
 
+  - name: Copy sample_playbook.yml
+    copy:
+      src: "{{ source_directory }}/sample_playbook.yml"
+      dest: "{{ destination_directory }}/{{ project_name }}/sample_playbook.yml"
+    delegate_to: localhost
+
   - name: Copy sample hosts file
     copy:
       src: "{{ source_directory }}/inventory/"

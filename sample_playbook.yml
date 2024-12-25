@@ -1,0 +1,9 @@
+---
+- name: Setup after new install
+  hosts: home
+  become: yes
+
+  roles:
+    - wifi_setup
+    - basics
+    - laptop_lid_disable
