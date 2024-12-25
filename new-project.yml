@@ -15,7 +15,7 @@
     file:
       path: "{{ destination_directory }}/{{ project_name }}/inventory"
       state: directory
-      mode: 0700
+      mode: 0755
     delegate_to: localhost
     
   - name: Create Project Directory and Group Vars Folder

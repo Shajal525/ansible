@@ -1,4 +1,0 @@
----
-- include_tasks: setup_wpa_supplicant_offline.yml
-# - include_tasks: setup_wpa_supplicant_online.yml
-- include_tasks: setup_wifi.yml

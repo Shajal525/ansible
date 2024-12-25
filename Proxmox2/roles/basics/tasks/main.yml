@@ -1,4 +1,0 @@
----
-- include_tasks: create_sudo_user.yml
-- include_tasks: upgrade.yml
-- include_tasks: ssh.yml

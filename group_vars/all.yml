@@ -1,6 +1,6 @@
 ---
-source_directory: /mnt/c/Users/Shajal/Documents/Personal/Ansible/
-destination_directory: /mnt/c/Users/Shajal/Documents/Personal/Ansible/
+source_directory: /home/shajal/Ansible/Ansible
+destination_directory: /home/shajal/Ansible/Ansible
 
 username: root
 
@@ -10,4 +10,4 @@ shell: /bin/bash
 
 ssh_port: 22
 
-ssh_key_path: /mnt/c/Users/Shajal/Documents/Personal/Ansible/.ssh/id_rsa
+ssh_key_path: /home/shajal/Ansible/Ansible/.ssh/id_rsa

@@ -1,9 +1,0 @@
----
-- name: Setup after new install
-  hosts: homeserver
-  become: yes
-
-  roles:
-    # - wifi_setup
-    - remove_repo
-    - basics
