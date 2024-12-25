@@ -4,7 +4,6 @@
   become: yes
 
   roles:
-    - wifi_setup
+    # - wifi_setup
     - remove_repo
     - basics
-    - laptop_lid_disable

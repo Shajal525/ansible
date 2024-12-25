@@ -1,0 +1,13 @@
+---
+- name: Restart systemd-logind
+  systemd:
+    name: systemd-logind
+    state: restarted
+  become: yes
+
+- name: Enable and start the display off service
+  systemd:
+    name: display_off_on_lid_close.service
+    enabled: yes
+    state: started
+  become: yes

@@ -2,9 +2,9 @@
 source_directory: /mnt/c/Users/Shajal/Documents/Personal/Ansible/
 destination_directory: /mnt/c/Users/Shajal/Documents/Personal/Ansible/
 
-username: notthebee
+username: root
 
-password: changeme
+password: shajal
 
 shell: /bin/bash
 

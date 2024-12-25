@@ -1,0 +1,10 @@
+---
+username: root
+
+password: shajal
+
+shell: /bin/bash
+
+ssh_port: 22
+
+ssh_key_path: /home/shajal/Ansible/Ansible/.ssh/id_rsa

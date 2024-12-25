@@ -1,0 +1,5 @@
+---
+- name: Remove repo
+  file:
+    path: /etc/apt/sources.list.d/{{ repo_name }}.list
+    state: absent
