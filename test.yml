@@ -1,0 +1,17 @@
+---
+- name: Find Wi-Fi interface names starting with 'w'
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: Extract interfaces starting with 'w'
+      set_fact:
+        wifi_interfaces: "{{ ansible_facts['interfaces'] | select('match', '^w.*') | list }}"
+
+    - name: Set the first Wi-Fi interface or empty string
+      set_fact:
+        primary_wifi_interface: "{{ wifi_interfaces[0] if wifi_interfaces | length > 0 else '' }}"
+
+    - name: Display the primary Wi-Fi interface
+      debug:
+        msg: "Primary Wi-Fi Interface: {{ primary_wifi_interface }}"
+  

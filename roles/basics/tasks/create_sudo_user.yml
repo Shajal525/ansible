@@ -1,4 +1,9 @@
 ---
+- name: Install sudo
+  apt:
+    name: sudo
+    state: present
+
 - name: Create new user
   user:
     name: "{{ username }}"
