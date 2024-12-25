@@ -2,7 +2,7 @@
 - name: Install sudo
   apt:
     name: sudo
-    state: presentS
+    state: present
 
 - name: Create new user
   user:
