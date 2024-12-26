@@ -3,10 +3,17 @@
   copy:
     src: "../files/"
     dest: "/tmp/"
+    mode: "0777"
+
+- name: Install prerequisites for Ansible to install .deb via apt module
+  apt:
+    name:
+    - xz-utils
 
 - name: Install deb packages
   apt:
-    deb:
-      - "../files/libnl-genl-3-200_3.7.0-0.2+b1_amd64.deb"
-      - "../files/libpcsclite1_1.9.9-2_amd64.deb"
-      - "../files/wpasupplicant_2.10-12+deb12u2_amd64.deb"
+    deb: "{{ item }}"
+  with_items:
+  - /tmp/libnl-genl-3-200_3.7.0-0.2+b1_amd64.deb
+  - /tmp/libpcsclite1_1.9.9-2_amd64.deb
+  - /tmp/wpasupplicant_2.10-12+deb12u2_amd64.deb

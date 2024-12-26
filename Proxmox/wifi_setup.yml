@@ -1,7 +1,8 @@
 ---
 - name: Setup after new install
   hosts: homeserver
+  gather_facts: true
   become: yes
 
   roles:
-    - basics
+    - wifi_setup
