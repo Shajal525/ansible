@@ -1,0 +1,7 @@
+---
+- name: Add user to proxmox(pveum) with admin access
+  hosts: homeserver
+  become: yes
+
+  roles:
+    - add_user_to_proxmox
