@@ -4,6 +4,11 @@
   gather_facts: true
   become: yes
 
-  roles:
-    - laptop_lid_disable
-    - add_user_to_proxmox
+  # roles:
+  #   - laptop_lid_disable
+  #   - add_user_to_proxmox
+
+  tasks:
+    - name: Restart after everything is done
+      reboot:
+        msg: "Rebooting machine in 5 seconds"

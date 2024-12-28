@@ -1,9 +1,4 @@
 ---
-- name: Copy web_supplicant deb files with dependencies
-  copy:
-    src: "../files/"
-    dest: "/tmp/"
-
 - name: Install deb packages
   apt:
     name: wpasupplicant

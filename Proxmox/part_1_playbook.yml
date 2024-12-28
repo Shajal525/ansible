@@ -5,8 +5,9 @@
   become: yes
 
   roles:
-    - wifi_setup
     - update_repo
+    - wifi_setup
     - create_sudo_user
     - generate_ssh_localhost
     - basics
+

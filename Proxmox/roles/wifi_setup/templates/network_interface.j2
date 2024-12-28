@@ -1,0 +1,20 @@
+auto lo
+iface lo inet loopback
+
+iface {{ ethernet_interface }} inet manual
+
+auto {{ wifi_interface }}
+iface {{ wifi_interface }} inet static
+        address {{ wifi_static_ip }}
+        netmask {{ netmask }}
+        gateway {{ gateway }}
+
+auto vmbr0
+iface vmbr0 inet static
+        address {{ virtual_bridge_ip }}
+        gateway {{ gateway }}
+        bridge-ports {{ ethernet_interface }}
+        bridge-stp off
+        bridge-fd 0
+
+source /etc/network/interfaces.d/*

@@ -47,20 +47,32 @@
     state: absent
 
 - name: To be able to auto connect to WiFi and assign static ip we need to edit /etc/network/interfaces
-  lineinfile:
-    path: /etc/network/interfaces
-    line: "{{ item }}"
-    state: present
-  loop:
-    - "# Static IP Configuration for {{ primary_wifi_interface }}"
-    - "auto {{ primary_wifi_interface }}"
-    - "iface {{ primary_wifi_interface }} inet static"
-    - "       address 192.168.1.108"
-    - "       netmask 255.255.255.0"
-    - "       gateway 192.168.1.1"
+  template:
+    src: templates/network_interface.j2
+    dest: /etc/network/interfaces
+
+- name: To be able to auto connect to WiFi, we need to configure /etc/systemd/system/wpa_supplicant.service
+  template:
+    src: templates/wpa_supplicant_service.j2
+    dest: /etc/systemd/system/wpa_supplicant.service
+
+- name: Enable wpa_supplicant
+  service:
+    name: wpa_supplicant
+    enabled: yes
+
+- name: Restart wpa_supplicant
+  service:
+    name: wpa_supplicant
+    state: restarted
 
 - name: Restart the networking service
   service:
     name: networking
     state: restarted
+
+- name: Sleep for few seconds
+  pause:
+    seconds: 15
+
 
