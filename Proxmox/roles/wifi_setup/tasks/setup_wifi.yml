@@ -34,7 +34,7 @@
 - name: Verify Wi-Fi connection
   command: "ping -c 3 8.8.8.8"
   register: ping_result
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Display connection status
   debug:
