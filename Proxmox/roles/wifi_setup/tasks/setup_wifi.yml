@@ -58,10 +58,6 @@
     - "       address 192.168.1.108"
     - "       netmask 255.255.255.0"
     - "       gateway 192.168.1.1"
-    - "# Wi-Fi Configuration"
-    - "iface {{ primary_wifi_interface }} inet dhcp"
-    - "wpa-ssid {{ ssid }}"
-    - "wpa-psk {{ passphrase }}"
 
 - name: Restart the networking service
   service:

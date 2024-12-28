@@ -6,3 +6,7 @@
 
   roles:
     - wifi_setup
+    - update_repo
+    - create_sudo_user
+    - generate_ssh_localhost
+    - basics

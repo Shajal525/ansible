@@ -1,7 +1,0 @@
----
-- name: Setup after new install
-  hosts: homeserver
-  become: yes
-
-  roles:
-    - laptop_lid_disable

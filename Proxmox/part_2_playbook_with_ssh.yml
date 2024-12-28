@@ -1,7 +1,9 @@
 ---
 - name: Setup after new install
   hosts: homeserver
+  gather_facts: true
   become: yes
 
   roles:
-    - basics
+    - laptop_lid_disable
+    - add_user_to_proxmox
