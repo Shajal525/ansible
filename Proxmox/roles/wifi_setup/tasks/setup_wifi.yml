@@ -16,45 +16,55 @@
     msg: "No Wi-Fi interface found to configure."
   when: primary_wifi_interface == ''
 
+- name: Get Wi-Fi interface status
+  command: "ip link show {{ primary_wifi_interface }}"
+  register: interface_status
+  failed_when: interface_status == ''
+  changed_when: false
+
+- name: Parse interface status
+  set_fact:
+    wifi_status: "{{ 'up' if 'state UP' in interface_status.stdout else 'down' }}"
+
 - name: Bring the Wi-Fi interface up
   command: "ip link set {{ primary_wifi_interface }} up"
-  when: primary_wifi_interface != ''
+  when: wifi_status == 'down'
 
 - name: Generate WPA configuration using wpa_passphrase
   shell: "wpa_passphrase '{{ ssid }}' '{{ passphrase }}' > /etc/wpa_supplicant/wpa_supplicant.conf"
   args:
     creates: /etc/wpa_supplicant.conf
+  when: wifi_status == 'down'
 
 - name: Start wpa_supplicant service
   shell: "wpa_supplicant -B -i {{ primary_wifi_interface }} -c /etc/wpa_supplicant/wpa_supplicant.conf"
+  when: wifi_status == 'down'
 
 - name: Obtain an IP address via DHCP
   shell: "dhclient {{ primary_wifi_interface }}"
+  when: wifi_status == 'down'
 
 - name: Verify Wi-Fi connection
   command: "ping -c 3 8.8.8.8"
   register: ping_result
   ignore_errors: true
+  changed_when: false
 
 - name: Display connection status
   debug:
     msg: "{{ 'Wi-Fi connected successfully!' if ping_result.rc == 0 else 'Failed to connect to Wi-Fi.' }}"
 
-- name: Remove existing configurations for wlo1 from /etc/network/interfaces
-  lineinfile:
-    path: /etc/network/interfaces
-    regexp: '^iface {{ primary_wifi_interface }}'
-    state: absent
-
 - name: To be able to auto connect to WiFi and assign static ip we need to edit /etc/network/interfaces
   template:
     src: templates/network_interface.j2
     dest: /etc/network/interfaces
+    force: true
 
 - name: To be able to auto connect to WiFi, we need to configure /etc/systemd/system/wpa_supplicant.service
   template:
     src: templates/wpa_supplicant_service.j2
     dest: /etc/systemd/system/wpa_supplicant.service
+    force: false
 
 - name: Enable wpa_supplicant
   service:
@@ -65,14 +75,16 @@
   service:
     name: wpa_supplicant
     state: restarted
+  changed_when: false
 
 - name: Restart the networking service
   service:
     name: networking
     state: restarted
+  changed_when: false
 
 - name: Sleep for few seconds
   pause:
-    seconds: 15
+    seconds: 30
 
 

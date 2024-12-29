@@ -14,6 +14,7 @@
     append: yes
     shell: "{{ shell }}"
     update_password: on_create
+    state: present
 
 - name: Enable passwordless sudo for "{{ username }}"
   lineinfile:
@@ -21,6 +22,7 @@
     regexp: "^%wheel"
     line: "{{ username }} ALL=(ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
+    state: present
 
 - name: Suppress login message (hushlogin)
   file:

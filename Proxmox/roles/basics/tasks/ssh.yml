@@ -8,13 +8,14 @@
   authorized_key:
     user: "{{ username }}"
     key: "{{ lookup('file', ssh_public_key) }}"
+    state: present
   
 # - name: Update SSH configuration to be more secure (thanks Jeff!)
 #   lineinfile:
 #     dest: "/etc/ssh/sshd_config"
 #     regexp: "{{ item.regexp }}"
 #     line: "{{ item.line }}"
-#     state: present
+#     state: "absent"
 #     validate: 'sshd -T -f %s'
 #     mode: 0644
 #   with_items:
