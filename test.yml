@@ -1,11 +1,14 @@
 ---
 - name: Find Wi-Fi interface names starting with 'w'
-  hosts: localhost
-  tasks:
-    - name: Get Wi-Fi interface status
-      command: "ip link show eth0"
-      register: interface_status
-    - name: Display interface status
-      debug:
-        var: interface_status.stdout
+  hosts: homeserver
+  become: true
 
+  tasks:
+    - name: Check if the user exists
+      shell: "pveum user list | grep -i shajal@pam"
+      register: check_user
+      changed_when: false
+
+    - name: Debug pveum user
+      debug:
+        msg: "{{ check_user }}"

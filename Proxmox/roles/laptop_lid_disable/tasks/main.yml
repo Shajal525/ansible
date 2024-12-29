@@ -21,7 +21,6 @@
       [Install]
       WantedBy=multi-user.target
     mode: '0644'
-    state: present
   become: yes
   notify: Enable and start the display off service
   
