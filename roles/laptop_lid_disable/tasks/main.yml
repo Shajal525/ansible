@@ -4,7 +4,7 @@
     dest: /etc/systemd/logind.conf
     regexp: "^#?HandleLidSwitch=.*"
     line: "HandleLidSwitch=ignore"
-  become: yes
+  become: true
   notify: Restart systemd-logind
 
 - name: Create a systemd script to turn off display on lid close
@@ -20,6 +20,6 @@
       [Install]
       WantedBy=multi-user.target
     mode: '0644'
-  become: yes
+  become: true
   notify: Enable and start the display off service
   

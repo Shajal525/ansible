@@ -2,7 +2,7 @@
 - name: Setup after new install
   hosts: homeserver
   gather_facts: true
-  become: yes
+  become: true
 
   roles:
     - update_repo

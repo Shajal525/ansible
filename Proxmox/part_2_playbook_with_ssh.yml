@@ -2,14 +2,14 @@
 - name: Setup after new install
   hosts: homeserver
   gather_facts: true
-  become: yes
+  become: true
 
   roles:
-    # - laptop_lid_disable
+    - laptop_lid_disable
     - add_user_to_proxmox
 
-  # tasks:
-  #   - name: Restart after everything is done
-  #     reboot:
-  #       msg: "Rebooting machine in 5 seconds"
-  #     changed_when: false
+  tasks:
+    - name: Restart after everything is done
+      reboot:
+        msg: "Rebooting machine in 5 seconds"
+      changed_when: false

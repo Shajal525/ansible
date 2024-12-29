@@ -7,20 +7,20 @@
 
 - name: Debug pveum user
   debug:
-    msg: "{{ check_user.stdout_lines | length }}"
+    var: check_user.stdout_lines | length | int
 
-# - name: "Add Proxmox User account (1/4)"
-#   command: "pveum useradd {{ username  }}@pam -comment 'New admin user'"
-#   when: {{ check_user.stdout_lines | length }} > 1
+- name: "Add Proxmox User account (1/4)"
+  command: "pveum useradd {{ username  }}@pam -comment 'New admin user'"
+  when: check_user.stdout_lines | length | int == 1
 
-# - name: "Add Proxmox User account (2/4)" 
-#   command: "pveum groupadd {{ proxmox_new_group }} -comment 'Local Administrator'"
-#   when: {{ check_user.stdout_lines | length }} > 1
+- name: "Add Proxmox User account (2/4)" 
+  command: "pveum groupadd {{ proxmox_new_group }} -comment 'Local Administrator'"
+  when: check_user.stdout_lines | length | int == 1
 
-# - name: "Add Proxmox User account (3/4)"
-#   command: "pveum aclmod / -group {{ proxmox_new_group }} -role Administrator"
-#   when: {{ check_user.stdout_lines | length }} > 1
+- name: "Add Proxmox User account (3/4)"
+  command: "pveum aclmod / -group {{ proxmox_new_group }} -role Administrator"
+  when: check_user.stdout_lines | length | int == 1
 
-# - name: "Add Proxmox User account (4/4)"
-#   command: "pveum usermod {{ username }}@pam -group {{ proxmox_new_group }}"
-#   when: {{ check_user.stdout_lines | length }} > 1
+- name: "Add Proxmox User account (4/4)"
+  command: "pveum usermod {{ username }}@pam -group {{ proxmox_new_group }}"
+  when: check_user.stdout_lines | length | int == 1

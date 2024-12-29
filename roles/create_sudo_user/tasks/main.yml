@@ -11,7 +11,7 @@
     groups:
       - sudo
       - users
-    append: yes
+    append: true
     shell: "{{ shell }}"
     update_password: on_create
 

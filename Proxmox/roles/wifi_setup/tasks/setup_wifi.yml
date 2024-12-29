@@ -69,7 +69,7 @@
 - name: Enable wpa_supplicant
   service:
     name: wpa_supplicant
-    enabled: yes
+    enabled: true
 
 - name: Restart wpa_supplicant
   service:

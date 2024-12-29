@@ -1,7 +1,7 @@
 ---
 - name: Setup after new install
   hosts: homeserver
-  become: yes
+  become: true
 
   roles:
     - wifi_setup

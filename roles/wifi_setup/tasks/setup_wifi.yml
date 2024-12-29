@@ -15,29 +15,29 @@
 - name: Bring the Wi-Fi interface up
   command: "ip link set {{ primary_wifi_interface }} up"
   when: primary_wifi_interface != ''
-  become: yes
+  become: true
 
 - name: Generate WPA configuration using wpa_passphrase
   shell: "wpa_passphrase '{{ ssid }}' '{{ passphrase }}' > /etc/wpa_supplicant/wpa_supplicant.conf"
   args:
     creates: /etc/wpa_supplicant.conf
-  become: yes
+  become: true
   vars:
     ssid: "YourSSID"
     passphrase: "YourPassphrase"
 
 - name: Start wpa_supplicant service
   shell: "wpa_supplicant -B -i {{ primary_wifi_interface }} -c /etc/wpa_supplicant/wpa_supplicant.conf"
-  become: yes
+  become: true
 
 - name: Obtain an IP address via DHCP
   shell: "dhclient {{ primary_wifi_interface }}"
-  become: yes
+  become: true
 
 - name: Verify Wi-Fi connection
   command: "ping -c 3 8.8.8.8"
   register: ping_result
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Display connection status
   debug:
@@ -47,20 +47,20 @@
   service:
     name: dhclient
     state: stopped
-  become: yes
+  become: true
 
 - name: Disable dhclient service from starting at boot
   service:
     name: dhclient
     enabled: no
-  become: yes
+  become: true
 
 - name: Remove existing configurations for wlo1 from /etc/network/interfaces
   lineinfile:
     path: /etc/network/interfaces
     regexp: '^iface wlo1'
     state: absent
-  become: yes
+  become: true
 
 - name: To be able to auto connect to WiFi and assign static ip we need to edit /etc/network/interfaces
   copy:
@@ -78,5 +78,5 @@
       wpa-ssid "{{ ssid }}"
       wpa-psk "{{ passphrase }}"
     mode: '0644'
-  become: yes
+  become: true
 
