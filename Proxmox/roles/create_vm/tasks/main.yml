@@ -1,0 +1,7 @@
+--- 
+
+- include_tasks: install_required_packages.yml
+- include_tasks: create_vm_template.yml
+- include_tasks: mount_iso_image.yml
+- include_tasks: create_disk_in_vm.yml
+

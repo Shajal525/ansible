@@ -1,0 +1,22 @@
+---
+proxmox_host: "proxmox.com"
+proxmox_user: "root@pam"
+proxmox_password: "shajal"
+proxmox_node: "proxmox"
+vm_id: 100
+vm_name: "UbuntuNAS"
+vm_cores: 4                                         # Number of CPU cores
+vm_memory: 4096                                     # Memory in MB
+vm_disk_size: 90                                    # Disk size in GB
+iso_storage: "local"                                # ISO storage name
+iso_image: "ubuntu-24.04.1-live-server-amd64.iso"    # Name of the ISO image
+vm_bridge: "vmbr0"                                  # Network bridge to use
+vm_ip: 192.168.1.3
+vm_gateway: 192.168.1.1
+vm_net: "virtio,bridge=vmbr0,firewall=1"
+vm_bios: "ovmf"
+vm_machine: "q35"
+vm_scsihw: "virtio-scsi-single"
+vm_storage: "local-zfs"
+vm_ip_address: "192.168.1.3"
+vm_ip_gateway: "192.168.1.1"
