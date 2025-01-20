@@ -1,7 +1,7 @@
 ---
 
 - name: Check if the user exists
-  shell: "pveum user list | grep -E 'userid|{{ username }}@pam'"
+  shell: "pveum user list | grep -E 'userid|{{ proxmox_username }}@pam'"
   register: check_user
   changed_when: false
 
@@ -10,7 +10,7 @@
     var: check_user.stdout_lines | length | int
 
 - name: "Add Proxmox User account (1/4)"
-  command: "pveum useradd {{ username  }}@pam -comment 'New admin user'"
+  command: "pveum useradd {{ proxmox_username  }}@pam -comment 'New admin user'"
   when: check_user.stdout_lines | length | int == 1
 
 - name: "Add Proxmox User account (2/4)" 
@@ -22,5 +22,5 @@
   when: check_user.stdout_lines | length | int == 1
 
 - name: "Add Proxmox User account (4/4)"
-  command: "pveum usermod {{ username }}@pam -group {{ proxmox_new_group }}"
+  command: "pveum usermod {{ proxmox_username }}@pam -group {{ proxmox_new_group }}"
   when: check_user.stdout_lines | length | int == 1

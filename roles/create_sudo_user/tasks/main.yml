@@ -6,8 +6,8 @@
 
 - name: Create new user
   user:
-    name: "{{ username }}"
-    password: "{{ password | password_hash('sha512') }}"
+    name: "{{ proxmox_username }}"
+    password: "{{ proxmox_username | password_hash('sha512') }}"
     groups:
       - sudo
       - users
@@ -15,19 +15,19 @@
     shell: "{{ shell }}"
     update_password: on_create
 
-- name: Enable passwordless sudo for "{{ username }}"
+- name: Enable passwordless sudo for "{{ proxmox_username }}"
   lineinfile:
     dest: /etc/sudoers
     regexp: "^%wheel"
-    line: "{{ username }} ALL=(ALL) NOPASSWD: ALL"
+    line: "{{ proxmox_username }} ALL=(ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
 
 - name: Suppress login message (hushlogin)
   file:
-    path: "/home/{{ username }}/.hushlogin"
+    path: "/home/{{ proxmox_username }}/.hushlogin"
     mode: 0644
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: "{{ proxmox_username }}"
+    group: "{{ proxmox_username }}"
     modification_time: preserve
     access_time: preserve
     state: touch

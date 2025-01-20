@@ -1,6 +1,6 @@
 ---
 - name: Setup after new install
-  hosts: homeserver
+  hosts: homeserver1
   gather_facts: false
   become: true
 

@@ -6,7 +6,7 @@
 
 - name: Deploy SSH public key to all hosts
   authorized_key:
-    user: "{{ username }}"
+    user: "{{ proxmox_username }}"
     key: "{{ lookup('file', ssh_public_key) }}"
     state: present
   

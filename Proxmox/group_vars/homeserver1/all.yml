@@ -1,0 +1,8 @@
+---
+ssh_directory: "/home/shajal/.ssh/"
+ssh_public_key: "{{ ssh_directory }}id_rsa.pub"
+ssh_key_path: "{{ ssh_directory }}id_rsa"
+ssh_port: 22
+current_directory: /home/shajal/Ansible/Ansible/Proxmox
+shell: /bin/bash
+
