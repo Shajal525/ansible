@@ -1,0 +1,5 @@
+---
+vm_id: 100
+vm_name: "UbuntuNAS"
+iso_storage: "local"
+iso_image: "ubuntu-24.04.1-live-server-amd64.iso"

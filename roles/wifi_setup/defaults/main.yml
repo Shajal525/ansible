@@ -1,4 +1,11 @@
 ---
-ssid: Infinity
+ssid: "{{ wifi_ssid }}"
+passphrase: "{{ wifi_password }}"
+virtual_bridge_ip: "{{ proxmox_ip_address }}/24"
+wifi_static_ip: "{{ proxmox_ip_address }}/24"
 
-passphrase: Shajanannya
+ethernet_interface: eno1
+wifi_interface: wlo1
+gateway: 192.168.1.1
+netmask: 255.255.255.0
+

@@ -6,7 +6,7 @@
 
 - name: Create .ssh Folder
   file:
-    path: "{{ current_directory }}/.ssh/"
+    path: "{{ ssh_directory }}"
     state: directory
   when: not result.stat.exists
 

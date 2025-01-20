@@ -4,6 +4,7 @@
     dest: /etc/systemd/logind.conf
     regexp: "^#?HandleLidSwitch=.*"
     line: "HandleLidSwitch=ignore"
+    state: present
   become: true
   notify: Restart systemd-logind
 

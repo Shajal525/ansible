@@ -1,0 +1,17 @@
+---
+vm_ip_address: "{{ new_vm_ip_address }}"
+vm_id: 100
+vm_name: "UbuntuNAS"
+vm_cores: 4
+vm_memory: 4096 
+vm_disk_size: 90
+iso_storage: "local"
+iso_image: "ubuntu-24.04.1-live-server-amd64.iso"
+vm_bridge: "vmbr0"
+vm_gateway: 192.168.1.1
+vm_net: "virtio,bridge=vmbr0,firewall=1"
+vm_bios: "ovmf"
+vm_machine: "q35"
+vm_scsihw: "virtio-scsi-single"
+vm_storage: "local-zfs"
+vm_ip_gateway: "192.168.1.1"

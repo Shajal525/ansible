@@ -1,5 +1,5 @@
 ---
-# - include_tasks: install_sudo.yml
-# - include_tasks: upgrade.yml
+- include_tasks: install_sudo.yml
+- include_tasks: upgrade.yml
 - include_tasks: ssh.yml
 

@@ -1,0 +1,36 @@
+---
+
+- name: Create Proxmox KVM virtual machine template
+  proxmox_kvm:
+    api_host: "{{ proxmox_host }}"
+    api_user: "{{ proxmox_user }}"
+    api_password: "{{ proxmox_password }}"
+    node: "{{ proxmox_node }}"
+    vmid: "{{ vm_id }}"
+    name: "{{ vm_name }}"
+    cores: "{{ vm_cores }}"
+    memory: "{{ vm_memory }}"
+    bios: "{{ vm_bios }}"
+    machine: "{{ vm_machine }}"
+    scsihw: "{{ vm_scsihw }}"
+    net:
+      net0: "{{ vm_net }}"
+    ipconfig:
+      ipconfig0: "ip={{ vm_ip_address }}/24,gw={{ vm_ip_gateway }}"
+    efidisk0:
+      storage: "{{ vm_storage }}"
+      format: raw
+      efitype: 4m
+      pre_enrolled_keys: 1
+    boot: "cd"
+    storage: "{{ vm_storage }}"
+    state: "present"
+
+- name: Debug VM Creation Response
+  debug:
+    var: vm_creation
+
+- name: Output VM details
+  debug:
+    msg: "VM {{ vm_name }} with ID {{ vm_id }} has been created and started."
+

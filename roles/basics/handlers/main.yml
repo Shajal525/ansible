@@ -1,7 +1,4 @@
 ---
-- name: Generate SSH key pair
-  command: ssh-keygen -t rsa -b 2048 -f {{ ssh_key_path }} -C "Ansible"
-
 - name: Restart SSH daemon
   service:
     name: sshd
