@@ -1,9 +1,0 @@
----
-# - name: Install wpa_supplicant with installed deb file
-#   include_tasks: setup_wpa_supplicant_offline.yml
-
-- name: Install wpa_supplicant online
-  include_tasks: setup_wpa_supplicant_online.yml
-
-- name: Setup wifi with the script setup_wifi.yml
-  include_tasks: setup_wifi.yml

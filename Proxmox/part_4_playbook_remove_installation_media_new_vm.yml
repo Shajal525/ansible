@@ -1,8 +1,0 @@
----
-- name: Setup after new install
-  hosts: homeserver1
-  gather_facts: false
-  become: true
-
-  roles:
-    - remove_vm_installation_media
